@@ -1,4 +1,4 @@
-package Code.Patterns;
+package Patterns;
 // 1
 // 01
 // 101

@@ -1,4 +1,4 @@
-package Code.Patterns;
+package Patterns;
 // 12345
 // 1234
 // 123
