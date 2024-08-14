@@ -58,6 +58,7 @@ public class LinkList {
         linkList.addFirst(1);
         linkList.addFirst(2);
         // linkList.printList();
+        // this is test commit
         linkList.addLast(4);
         linkList.addLast(5);
         linkList.addLast(6);
