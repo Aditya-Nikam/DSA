@@ -45,17 +45,19 @@ public class LinkList {
     }
 
     public void printList() {
-        if (head == null)
+        if (head == null) {
             System.out.print("Linklist is empty");
+        }
         Node p = head;
         while (p != null) {
             System.out.print("[ " + p.data + " | -]->");
             p = p.next;
         }
+        System.out.println();
     }
 
     public void add(int data, int index) {
-        if(index == 0){
+        if (index == 0) {
             addFirst(data);
             return;
         }
@@ -70,18 +72,45 @@ public class LinkList {
         p.next = newNode;
     }
 
+    public void insertAfter(int node, int data) {
+        Node newNode = new Node(data);
+        Node p = head;
+        while (p.data != node) {
+            if (p.next == null) {
+                System.out.println("Node not found");
+                return;
+            }
+            p = p.next;
+        }
+        newNode.next = p.next;
+        p.next = newNode;
+    }
+
+    public void insertBefore(int node, int data) {
+        Node newNode = new Node(data);
+        Node p = head;
+        Node prev = null;
+        while (p.data != node) {
+            if (p.next == null) {
+                System.out.println("Node not found");
+                return;
+            }
+            prev = p;
+            p = p.next;
+        }
+        newNode.next = p;
+        prev.next = newNode;
+    }
+
     public static void main(String[] args) {
         LinkList linkList = new LinkList();
-        linkList.addFirst(0);
-        linkList.addFirst(1);
-        linkList.addFirst(2);
-        // linkList.printList();
-        linkList.addLast(4);
-        linkList.addLast(5);
-        linkList.addLast(6);
+        linkList.addLast(1);
+        linkList.addLast(2);
+        linkList.addLast(3);
         linkList.printList();
-
-        linkList.add(10, 10);
+        linkList.insertAfter(2, 0);
+        linkList.printList();
+        linkList.insertBefore(3, 34);
         linkList.printList();
     }
 }
