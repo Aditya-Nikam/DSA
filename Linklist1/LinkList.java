@@ -37,7 +37,7 @@ public class LinkList {
             p = p.next;
         }
         p.next = newNode;
-        tail = p.next;
+        tail = newNode;
 
         // ORR O(1)
         // tail.next = newNode;// tail -> next = newNode
@@ -45,11 +45,29 @@ public class LinkList {
     }
 
     public void printList() {
+        if (head == null)
+            System.out.print("Linklist is empty");
         Node p = head;
         while (p != null) {
             System.out.print("[ " + p.data + " | -]->");
             p = p.next;
         }
+    }
+
+    public void add(int data, int index) {
+        if(index == 0){
+            addFirst(data);
+            return;
+        }
+        Node newNode = new Node(data);
+        Node p = head;
+        int i = 0;
+        while (i < index - 1 && p.next != null) {
+            p = p.next;
+            i++;
+        }
+        newNode.next = p.next;
+        p.next = newNode;
     }
 
     public static void main(String[] args) {
@@ -58,10 +76,12 @@ public class LinkList {
         linkList.addFirst(1);
         linkList.addFirst(2);
         // linkList.printList();
-        // this is test commit
         linkList.addLast(4);
         linkList.addLast(5);
         linkList.addLast(6);
+        linkList.printList();
+
+        linkList.add(10, 10);
         linkList.printList();
     }
 }
