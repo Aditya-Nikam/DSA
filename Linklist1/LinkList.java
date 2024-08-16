@@ -8,11 +8,13 @@ public class LinkList {
         public Node(int data) {
             this.data = data;
             this.next = null;
+            size++;
         }
     }
 
     public static Node head;
     public static Node tail;
+    public static int size;
 
     public void addFirst(int data) {
         Node newNode = new Node(data);// create a new node
@@ -102,15 +104,83 @@ public class LinkList {
         prev.next = newNode;
     }
 
+    public int removeFirst() {
+        if (size == 0) {
+            System.out.println("Link List is empty");
+            return Integer.MIN_VALUE;
+        }
+        int data = head.data;
+        if (size == 1) {
+            head = tail = null;
+            size--;
+            return data;
+        }
+        head = head.next;
+        size--;
+        return data;
+    }
+
+    public int removeLast() {
+        if (size == 0) {
+            System.out.println("Link List is empty");
+            return Integer.MIN_VALUE;
+        }
+        Node p = head;
+        int data = tail.data;
+        if (size == 1) {
+            head = tail = null;
+            size--;
+            return data;
+        }
+        while (p.next != tail) {
+            p = p.next;
+        }
+        p.next = null;
+        tail = p;
+        size--;
+        return data;
+    }
+
+    public void remove(int node) {
+        if (size == 0) {
+            System.out.println("Linklist is empty");
+            return;
+        }
+        if (size == 1 && head.data == node) {
+            head = tail = null;
+            size--;
+            return;
+        }
+        if (head.data == node) {
+            removeFirst();
+            return;
+        }
+        if (tail.data == node) {
+            removeLast();
+            return;
+        }
+        Node prev = null;
+        Node p = head;
+        while (p.data != node) {
+            if (p.next == null) {
+                System.out.println("Node Not Found");
+                return;
+            }
+            prev = p;
+            p = p.next;
+        }
+        prev.next = p.next;
+        size--;
+    }
+
     public static void main(String[] args) {
         LinkList linkList = new LinkList();
         linkList.addLast(1);
         linkList.addLast(2);
         linkList.addLast(3);
-        linkList.printList();
-        linkList.insertAfter(2, 0);
-        linkList.printList();
-        linkList.insertBefore(3, 34);
+        linkList.addLast(4);
+        linkList.addLast(5);
+        linkList.remove(1);
         linkList.printList();
     }
 }
